@@ -1,0 +1,118 @@
+:root {
+    --muted: #6c6c6c;
+    --orange: #ff7500;
+    --text-gray: #434343;
+}
+
+a {
+    color: #ffff;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 25pt;
+    margin: 0px;
+    padding: 0px;
+    font-family: lora-regular;
+    font-weight: 600;
+}
+
+h2{font-size: 19pt;}
+
+h3 {margin: 0.1in 0in}
+
+.des {
+    color: var(--text-gray);
+}
+
+.muted-text {
+    margin: 0.1in 0px;
+    color: var(--muted) !important;
+}
+
+.rec-li{
+    padding-left: 25px;
+}
+
+.rec-li li {
+    list-style: square;
+    color: var(--orange);
+}
+
+li span {
+    color: var(--muted);
+}
+
+.section-header {
+    border-bottom: solid 4px var(--orange);
+    margin: 0px;
+    padding: 0px;
+    font-family: lora-regular;
+    font-weight: 600;
+}
+
+.page {
+    margin: 0px;
+    background-color: gray;
+    font-family: lora-medium;
+    font-weight: 600;
+    color: var(--text-gray);
+    font-size: 11pt;
+}
+
+.project{
+    margin-top: 0.25in;
+}
+
+.side-bar {
+    font-size: 14pt;
+    padding: 0.25in 0.5in 0.5in;
+}
+
+.header-box {
+    background-color: var(--orange);
+    height: auto;
+    padding:  0.5in;
+    color: #ffff;
+}
+
+.position-title {
+    font-size: 22px;
+    font-family: lora-italic;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.resume-body {
+    display: grid;
+    grid-template-columns: 3.3in auto;
+    background-color: #ffff;
+    height: 11in;
+    width: 8.5in;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.right-col {
+    margin: 0.5in 0.5in 0.5in 0.25in
+}
+
+@font-face {
+    font-family: lora-bold;
+    src: url(Lora-Bold.ttf);
+}
+
+@font-face {
+    font-family: lora-italic;
+    src: url(Lora-Italic.ttf);
+}
+
+@font-face {
+    font-family: lora-regular;
+    src: url(Lora-Regular.ttf);
+}
+
+@font-face {
+    font-family: lora-medium;
+    src: url(lora-medium.ttf);
+}
