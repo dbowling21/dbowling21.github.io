@@ -14,6 +14,20 @@ h2{
     font-size: 3em;
 }
 
+a {
+    color: var(--w-text);
+    text-decoration: none;
+}
+
+.hover{
+    display: inline-block;
+}
+
+    .hover:hover {
+        color: var(--accent );
+        transform: scale(1.05);
+    }
+
 p{
     margin: 0px;
     opacity: 0;

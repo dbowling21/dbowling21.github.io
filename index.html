@@ -1,152 +1,182 @@
 <!DOCTYPE html>
 
 <head>
+    <script>
+        var i = 0;
+        var j = 0;
+        var k = 0;
+        var cursor = true;
+        var text = '';
+        var delay = 0;
+        var speed = 50;
+        var id = '';
+        var myInterval;
+        var curr_cursor;
+        var list = ["cmd1", "cmd2", "cmd3"];
+
+        // setTimeout(function typeWriter() {
+        //     if (i < txt.length) {
+        //         document.getElementById("demo").innerHTML += txt.charAt(i);
+        //         i++;
+        //         setTimeout(typeWriter, speed);
+        //     }
+        //     clearInterval(myInterval);
+        //     document.getElementById('cursor').style.opacity = 0;
+        // }, 3000);
+
+        function typer(test_id, text_input, delay_in) {
+            k = 0;
+            delay = delay_in;
+            id = test_id;
+            text = text_input;
+            setTimeout(() => {
+                clearInterval(myInterval);
+                document.getElementById(curr_cursor).style.opacity = 0;
+                writer();
+            }, delay)
+        }
+
+        function writer() {
+            if (k < text.length) {
+                document.getElementById(id).innerHTML += text.charAt(k);
+                k++;
+                setTimeout(writer, 50);
+            }
+        }
+
+        function cursor_blink(curr) {
+            curr_cursor = curr
+            myInterval = setInterval(() => {
+                if (cursor) {
+                    document.getElementById(curr_cursor).style.opacity = 0;
+                    cursor = false;
+                } else {
+                    document.getElementById(curr_cursor).style.opacity = 1;
+                    cursor = true;
+                }
+            }, 800);
+        }
+
+        // function cmds(cmdID) {
+        //     if (j < 6) {
+        //         j++;
+        //         document.getElementById(cmdID + j).style.opacity = 1;
+        //         setTimeout(function(){cmds(cmdID)}, 400);
+        //     }
+        // }
+
+        function cmds() {
+            if (j < list.length) {
+                document.getElementById(list[j]).style.opacity = 1;
+                j++;
+                setTimeout(function () { cmds.apply(this, list) }, 400);
+            }
+        }
+
+        setTimeout(function () {
+            cursor_blink('cursor2');
+            setTimeout(function () {
+                typer('typer', 'Show Projects', 100);
+            }, 5000);
+
+            setTimeout(function () { 
+                j = 0;
+                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8"];
+                cmds.apply(this, list);
+            }, 6400);
+
+        }, 5200);
+
+
+    </script>
+    <script>
+        var myScrollFunc = function () {
+            var y = window.scrollY;
+            if (y >= 1000) {
+                cursor_blink('cursor3');
+            } else {
+            }
+        };
+
+        window.addEventListener("scroll", myScrollFunc);
+    </script>
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
 </head>
 
 <html>
+<div class="navbar">
+    <div class="icon-container">
+        <a class="hover" href="index.html#projects">Projects</a>
+        <b>/</b>
+        <a class="hover" href="index.html#projects" style="text-decoration: none;">Goals</a>
+        <b>/</b>
+        <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
+        <b>/</b>
+        <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
+        <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
+    </div>
+</div>
 
-<body class="page">
-    <div class="resume-body">
-        <!--Left column-->
-        <div class="left-col">
-            <div class="header-box">
-                <h1> David Bowling</h1>
-                <h2 class="position-title">Software Engineer</h2>
-                <i class="fa-solid fa-envelope"></i>
-                <a style="text-decoration: none;">davidbowling21@gmail.com</a><br>
-                <i class="fa-solid fa-square-phone"></i>
-                <a>720-514-0685</b> <br>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/david-bowling-213g/">LinkedIn</a> <br>
-                    <i class="fa-brands fa-github"></i>
-                    <a href="https://github.com/dbowling21">Github</a>
-
-            </div>
-
-            <div class="side-bar">
-                <!-- EDUCATION -->
-                <div>
-                    <h2 class="section-header">Education</h2>
-                    <p>Metropolitan State <br>University of Denver</p>
-                    <p style="color: #ff7500; margin-bottom: 0px;">B.S. in Computer Science <br> &nbsp - Minor in
-                        Mathematics</p>
-
-                    <div style="display: inline-flex; margin-top: 10px;">
-                        <p style="line-height: 30px; margin-bottom: 4px;">
-                            <span><i class="fa-solid fa-graduation-cap" style="margin: 0px 5px;"></i>
-                                2019 - May 2022,</span><br>
-                            <span style="color: var(--orange); margin-left: 32px;">Summa Cum Laude,</span><br>
-                            <span style="color: var(--orange); margin-left: 32px;">GPA: 3.97 </span><br>
-                            <!-- HIGHLIGHT SUMMA CUM LAUDE-->
-                        </p>
-                    </div>
-
-                    <div>
-                        <i class="fa-solid fa-location-dot" style="display: inline-flex; margin: 0px 5px 0px 10px"></i>
-                        <p style="display: inline-flex; line-height: 30px; margin-top: 0px;">
-                            Boulder, CO
-                        </p>
-                    </div>
-                </div>
-                <!--Edu. end-->
-
-                <!-- SKILLS -->
-                <div style="margin-top: 0.25in">
-                    <h2 class="section-header">Skills</h2>
-                    <ul style="line-height: 35px;">
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>C#</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Git</li>
-                        <li>Agile</li>
-                        <li>Scrum</li>
-                    </ul>
-
-                </div>
-                <!--Skills end-->
-            </div>
+<body class="page" onload="cursor_blink('cursor1'); typer('demo', 'Show Bio', 3000); 
+setTimeout(function (){cmds.apply(this,list)}, 4000);">
+    <div class="container">
+        <h1 class="name">David/Portfolio$</h1>
+        <b id="cursor1" class="name">_</b>
+        <b id="demo" class="name"></b>
+        <!-- <b id="demo" class="name"></b> -->
+        <div class="bio">
+            <p class="shadow" id="cmd1">Hi! I'm a Metropolitan State University of Denver Alumni.
+                I graduated Summa Cum Laude with my Bachelor's in
+                Computer Science.
+            </p> <br>
+            <p class="shadow" id="cmd2">
+                I have a passion for building great intuitive UI as well as
+                a love for software development. Take a look at some of my projects below!
+            </p>
 
         </div>
-        <!--left col. end-->
 
-        <div class="right-col">
+        <h1 id="cmd3" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
+        <b id="cursor2" class="name" style="opacity: 0;">_</b>
+        <b id="typer" class="name"> </b>
 
-            <h2 class="section-header">Experience</h2>
-            <div style="margin-bottom: 0.2in;">
-                <h3>FaciliCase ( Two Month Contract ) | Frontend</h3>
-                <p class="muted-text">
-                    <b class="des">Description:</b>
-                    Software for mediation management used by individual
-                    practitioners and mediation companies throughout Colorado.
-                </p>
-                <b class="des">Contributions:</b><br>
-                <ul class="muted-text rec-li" style="margin-top: 5px;">
-                    <li><span>Built web application’s reactive HTML and CSS</span></li>
-                    <li><span>Designed app's UI, layout, and styling</span></li>
-                    <li><span>Overhauled landing page and login experience </span></li>
-                    <li><span>Ensured functional UI across mobile, tablet, and desktop </span></li>
-                </ul>
-                <p class="muted-text">
-                    <b class="des">Stack:</b>
-                    C#, Blazor, HTML/CSS, MongoDB, Git
-                </p>
-            </div>
-
-            <h2 class="section-header">Projects</h2>
-
-            <!--Public Key Encryption | Developer-->
-            <div>
-                <h3>Public Key Encryption | Developer</h3>
-                <p class="muted-text">
-                    <b class="des">Description:</b>
-                    Generates keys, encrypts/decrypts messages, and verifies message authenticity.
-                </p>
-                <b class="des">Contributions:</b><br>
-                <ul class="muted-text rec-li" style="margin-top: 5px;">
-                    <li><span>Utilized Java's Security Package for message hashing</span></li>
-                    <li><span>Wrote method to RSA encrypte message and its digest </span></li>
-                    <li><span>Implemented ability to simulate altered digital digest</span></li>
-                    <li><span>Created receiver program to decrypte and verify message authenticity</span></li>
-                </ul>
-                <p class="muted-text">
-                    <b class="des">Stack:</b>
-                    Java, Git
-                </p>
-            </div>
-
-            <!--Drone Delivery Service-->
-            <div style="margin-top: 0.3in; margin-bottom: 0.2in;">
-                <h3>Drone Delivery Service | Frontend</h3>
-                <p class="muted-text">
-                    <b class="des">Description:</b>
-                    Business facing web application for managing orders, drones, and tracking.
-                    Dispatched drones are updated in real time on the frontend.
-                </p>
-                <b class="des">Contributions:</b><br>
-                <ul class="muted-text rec-li" style="margin-top: 5px;">
-                    <li><span>Web application’s HTML and CSS</span></li>
-                    <li><span>Built interactive UI using C# and Javascript</span></li>
-                    <li><span>Enabled CRUD operations on MongoDB from the web app</span></li>
-                    <li><span>Added Google Maps and UI to filter the displayed drones</span></li>
-                </ul>
-                <p class="muted-text">
-                    <b class="des">Stack:</b>
-                    C#, Blazor, HTML/CSS, JavaScript, MongoDB, Google Maps API, Docker, Git
-                </p>
-            </div>
-
-            <h2 class="section-header">Courses</h2>
-            <ul style="line-height: 26px; margin-top: 5px; margin-bottom: 0px;">
-                <li>Natural Language Processing with Deep Learning</li>
-                <li>Image Processing and Computer Vision</li>
-                <!--  <li>Software Development Tools and Methods</li> -->
-                <li>Computer and Network Security</li>
-            </ul>
+        <h2 id="cmd4" style="margin-left: 40px; margin-bottom: 0px; opacity: 0;">FaciliCase</h2>
+        <div id="cmd5" class="bio" style="display: inline-flex; opacity: 0;">
+            <p class="shadow" style="opacity: 1; margin-right: 40px;">With FaciliCase, I
+                built a new customer experience to streamline the work
+                their clients perform. I worked directly with mediators
+                to create and iterate on the features and UI that were
+                critical to them. One of the most important updates I
+                contributed was making their web application work seamlessly
+                across mobile, tablet, and desktop. This opened the
+                opportunity for their clients to manage cases on the go
+                and is a new selling point for Facilicase’s software.</p>
+            <img class="img" src="CaseSearch.PNG" width="768" height="412">
         </div>
+
+        <h2 id="cmd6" style="margin-left: 40px; opacity: 0;">Flying Pizza</h2>
+        <div id="cmd7" class="bio" style="display: inline-flex; opacity: 0;">
+            <video class="img" src="DemoFallback.mp4" width="768" height="412" controls>
+                <source src="movie.mp4" type="video/mp4">
+            </video>
+            <p class="shadow" style="opacity: 1; margin-left: 40px;">With FaciliCase, I
+                built a new customer experience to streamline the work
+                their clients perform. I worked directly with mediators
+                to create and iterate on the features and UI that were
+                critical to them. One of the most important updates I
+                contributed was making their web application work seamlessly
+                across mobile, tablet, and desktop. This opened the
+                opportunity for their clients to manage cases on the go
+                and is a new selling point for Facilicase’s software.</p>
+        </div>
+
+        <h1 id="cmd8" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
+        <b id="cursor3" class="name" style="opacity: 0;">_</b>
+        <b id="typer" class="name"> </b>
+        <!-- Goals ( full Section) -->
+        <!-- Hobbies ( IM A HUMAN) -->
+        <!--  Quote (in footer or at bottom?) -->
     </div>
 </body>
 
