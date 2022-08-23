@@ -30,7 +30,7 @@ a {
 
 p{
     margin: 0px;
-    opacity: 0;
+    opacity: 1;
 }
 
 .page {
@@ -43,6 +43,7 @@ p{
 .name{
     font-size: 3.5em;
     display: inline;
+    opacity: 1;
 }
 
 .icon-container{
@@ -69,19 +70,29 @@ p{
     background-color: var(--gray);
 }
 
+@media only screen and (max-width: 600px){
+    .navbar{
+        background-color: red;
+        height: 500px;
+    }
+}
+
 .container{
     margin: 40px;
 }
 
 .bio{
     font-size: 2em;
-    /* background-color: rgb(62, 62, 62); */
     box-sizing:border-box;
     width: 100%;
     padding: 40px;
+    opacity: 1;
+
+    display: flex;
+  flex-wrap: wrap;
 }
 
-.img{
+.img-shadow{
     filter: drop-shadow(30px 20px 4px rgba(0, 0, 0, 0.3));
         /* box-shadow: 0 20px 35px 0 #586e75; */
 }
@@ -90,7 +101,17 @@ p{
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
 
+.text{
+    flex: 1;
+    min-width: 40%;
+    margin: 20px 0px;
+}
 
+.img{
+    flex: 1;
+    margin: 20px 0px;
+    min-width: 800px;
+}
 
 @font-face {
     font-family: JB-bold;

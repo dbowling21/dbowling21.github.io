@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <script>
+    <!-- <script>
         var i = 0;
         var j = 0;
         var k = 0;
@@ -13,6 +13,7 @@
         var myInterval;
         var curr_cursor;
         var list = ["cmd1", "cmd2", "cmd3"];
+        var flash = true;
 
         // setTimeout(function typeWriter() {
         //     if (i < txt.length) {
@@ -87,39 +88,47 @@
 
         }, 5200);
 
-
-    </script>
-    <script>
         var myScrollFunc = function () {
             var y = window.scrollY;
-            if (y >= 1000) {
+            console.log("ScrollY: " + y);
+            console.log("flash: " + flash);
+            if (y >= 1016 && flash) {
+                flash = false;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~RAN~~~~~~~~~~~~~~~~");
                 cursor_blink('cursor3');
             } else {
+
             }
         };
 
         window.addEventListener("scroll", myScrollFunc);
+
     </script>
+    <script>
+        
+    </script> -->
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
 </head>
 
 <html>
-<div class="navbar">
-    <div class="icon-container">
-        <a class="hover" href="index.html#projects">Projects</a>
-        <b>/</b>
-        <a class="hover" href="index.html#projects" style="text-decoration: none;">Goals</a>
-        <b>/</b>
-        <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
-        <b>/</b>
-        <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
-        <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
-    </div>
-</div>
 
 <body class="page" onload="cursor_blink('cursor1'); typer('demo', 'Show Bio', 3000); 
 setTimeout(function (){cmds.apply(this,list)}, 4000);">
+
+    <div class="navbar">
+        <div class="icon-container">
+            <a class="hover" href="index.html#projects">Projects</a>
+            <b>/</b>
+            <a class="hover" href="index.html#projects" style="text-decoration: none;">Goals</a>
+            <b>/</b>
+            <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
+            <b>/</b>
+            <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
+            <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="name">David/Portfolio$</h1>
         <b id="cursor1" class="name">_</b>
@@ -129,7 +138,8 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
             <p class="shadow" id="cmd1">Hi! I'm a Metropolitan State University of Denver Alumni.
                 I graduated Summa Cum Laude with my Bachelor's in
                 Computer Science.
-            </p> <br>
+            </p>
+            <br>
             <p class="shadow" id="cmd2">
                 I have a passion for building great intuitive UI as well as
                 a love for software development. Take a look at some of my projects below!
@@ -137,43 +147,65 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
 
         </div>
 
-        <h1 id="cmd3" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
-        <b id="cursor2" class="name" style="opacity: 0;">_</b>
+        <h1 id="cmd3" class="name"><a id="projects"></a>David/Portfolio$</h1>
+        <b id="cursor2" class="name">_</b>
         <b id="typer" class="name"> </b>
 
-        <h2 id="cmd4" style="margin-left: 40px; margin-bottom: 0px; opacity: 0;">FaciliCase</h2>
-        <div id="cmd5" class="bio" style="display: inline-flex; opacity: 0;">
-            <p class="shadow" style="opacity: 1; margin-right: 40px;">With FaciliCase, I
-                built a new customer experience to streamline the work
-                their clients perform. I worked directly with mediators
-                to create and iterate on the features and UI that were
-                critical to them. One of the most important updates I
-                contributed was making their web application work seamlessly
-                across mobile, tablet, and desktop. This opened the
-                opportunity for their clients to manage cases on the go
-                and is a new selling point for Facilicase’s software.</p>
-            <img class="img" src="CaseSearch.PNG" width="768" height="412">
+        <h2 id="cmd4" style="margin-left: 40px; margin-bottom: 0px; opacity: 1;">FaciliCase</h2>
+
+        <div id="cmd5" class="bio">
+            <div class="text">
+                <p class="shadow" style="margin-right: 40px;">With FaciliCase, I
+                    built a new customer experience to streamline the work
+                    their clients perform. I worked directly with mediators
+                    to create and iterate on the features and UI that were
+                    critical to them. One of the most important updates I
+                    contributed was making their web application work seamlessly
+                    across mobile, tablet, and desktop. This opened the
+                    opportunity for their clients to manage cases on the go
+                    and is a new selling point for Facilicase’s software.</p>
+
+            </div>
+            <div class="img">
+                <!-- <p class="shadow" style="margin-right: 40px;">With FaciliCase, I
+                    built a new customer experience to streamline the work
+                    their clients perform. I worked directly with mediators
+                    to create and iterate on the features and UI that were
+                    critical to them. One of the most important updates I
+                    contributed was making their web application work seamlessly
+                    across mobile, tablet, and desktop. This opened the
+                    opportunity for their clients to manage cases on the go
+                    and is a new selling point for Facilicase’s software.</p> -->
+                <img class="img-shadow" src="CaseSearch.PNG" width="768" height="412">
+            </div>
         </div>
 
-        <h2 id="cmd6" style="margin-left: 40px; opacity: 0;">Flying Pizza</h2>
-        <div id="cmd7" class="bio" style="display: inline-flex; opacity: 0;">
-            <video class="img" src="DemoFallback.mp4" width="768" height="412" controls>
-                <source src="movie.mp4" type="video/mp4">
-            </video>
-            <p class="shadow" style="opacity: 1; margin-left: 40px;">With FaciliCase, I
-                built a new customer experience to streamline the work
-                their clients perform. I worked directly with mediators
-                to create and iterate on the features and UI that were
-                critical to them. One of the most important updates I
-                contributed was making their web application work seamlessly
-                across mobile, tablet, and desktop. This opened the
-                opportunity for their clients to manage cases on the go
-                and is a new selling point for Facilicase’s software.</p>
+        <h2 id="cmd6" style="margin-left: 40px; opacity: 1;">Flying Pizza</h2>
+        <div id="cmd7" class="bio">
+            <div class="img">
+                <video class="img-shadow" src="DemoFallback.mp4" width="768" height="412" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="text">
+                <p class="shadow" style="opacity: 1; margin-left: 40px;">With FaciliCase, I
+                    built a new customer experience to streamline the work
+                    their clients perform. I worked directly with mediators
+                    to create and iterate on the features and UI that were
+                    critical to them. One of the most important updates I
+                    contributed was making their web application work seamlessly
+                    across mobile, tablet, and desktop. This opened the
+                    opportunity for their clients to manage cases on the go
+                    and is a new selling point for Facilicase’s software.</p>
+            </div>
+            
         </div>
 
         <h1 id="cmd8" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
         <b id="cursor3" class="name" style="opacity: 0;">_</b>
-        <b id="typer" class="name"> </b>
+        <b id="goals" class="name"> </b>
+
+
         <!-- Goals ( full Section) -->
         <!-- Hobbies ( IM A HUMAN) -->
         <!--  Quote (in footer or at bottom?) -->
