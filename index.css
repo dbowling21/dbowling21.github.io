@@ -1,18 +1,12 @@
 :root{
-    /* --w-text: #FDFDFD; */
     --w-text: #b5bfc1;
     --accent: #586e75;
     --gray: #232323;
-
 }
 
-h1{
-    color: var(--accent);
-}
+h1{color: var(--accent);}
 
-h2{
-    font-size: 3em;
-}
+h2{font-size: 3em;}
 
 a {
     color: var(--w-text);
@@ -22,7 +16,6 @@ a {
 .hover{
     display: inline-block;
 }
-
     .hover:hover {
         color: var(--accent );
         transform: scale(1.05);
@@ -58,26 +51,50 @@ p{
 .icon{
     margin: 0px 10px;
 }
-
     .icon:hover{
         transform: scale(1.1);
     }
 
 .navbar{
-    margin: 0px;
+    box-sizing:border-box;
     width: 100%;
     height: 60px;
     background-color: var(--gray);
 }
 
+.mobile-container{
+    text-align: center;
+    line-height: 55px;
+    font-size: 1.5em;
+    height: 110px;
+}
+
 @media only screen and (max-width: 600px){
     .navbar{
-        background-color: red;
+        height: 130px;
+        padding: 10px;
+    }
+    .icon {
+        font-size: 1.5em;
+    }
+
+    .icon-container{ display: none; }
+
+    .name{ font-size: 2em; }
+
+    .container{ margin: 10px !important; }
+
+    .bio{ padding: 30px !important;}
+    
+    .img{
+        display: none;
     }
 }
 
-.container{
-    margin: 40px;
+@media only screen and (min-width: 601px){
+    .mobile-container{
+        display: none;
+    }
 }
 
 .bio{
@@ -104,6 +121,10 @@ p{
     flex: 1;
     min-width: 40%;
     margin: 20px 0px;
+}
+
+.container{
+    margin: 40px;
 }
 
 .img{
