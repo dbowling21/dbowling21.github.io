@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <!-- <script>
+    <script>
         var i = 0;
         var j = 0;
         var k = 0;
@@ -78,15 +78,15 @@
             cursor_blink('cursor2');
             setTimeout(function () {
                 typer('typer', 'Show Projects', 100);
-            }, 5000);
+            }, 3400); //lets cursor blink for 3.4sec
 
             setTimeout(function () { 
                 j = 0;
-                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8"];
+                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
                 cmds.apply(this, list);
-            }, 6400);
+            }, 4600); //waits to display projects for 4.6sec
 
-        }, 5200);
+        }, 4700); //Starts 2nd command cursor blink after 4.7sec
 
         var myScrollFunc = function () {
             var y = window.scrollY;
@@ -102,11 +102,7 @@
         };
 
         window.addEventListener("scroll", myScrollFunc);
-
     </script>
-    <script>
-        
-    </script> -->
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,9 +121,9 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
             <b>/</b>
             <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
             <b>/</b>
-            <a  href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
-            <a  href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
-        </div> 
+            <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
+            <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
+        </div>
         <div class="mobile-container">
             <a class="hover" href="index.html#projects">Projects</a>
             <b>/</b>
@@ -141,25 +137,24 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
     </div>
 
     <div class="container">
-        <h1 class="name">David/Portfolio$</h1>
+        <h1 class="name" style="opacity: 1;">David/Portfolio$</h1>
         <b id="cursor1" class="name">_</b>
         <b id="demo" class="name"></b>
 
-        <div class="bio">
-            <p class="shadow" style="margin: 20px;" id="cmd1">Hi! I'm a Metropolitan State University of Denver Alumni.
+        <div class="bio" style="opacity: 1">
+            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of Denver Alumni.
                 I graduated Summa Cum Laude with my Bachelor's in
                 Computer Science.
             </p>
             <br>
-            <p class="shadow" style="margin: 20px;" id="cmd2">
+            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd2">
                 I have a passion for building great intuitive UI as well as
                 a love for software development. Take a look at some of my projects below!
             </p>
-
         </div>
 
         <h1 id="cmd3" class="name"><a id="projects"></a>David/Portfolio$</h1>
-        <b id="cursor2" class="name">_</b>
+        <b id="cursor2" class="name" style="opacity: 0;">_</b>
         <b id="typer" class="name"> </b>
 
         <h2 id="cmd4">FaciliCase | Frontend Web Developer</h2>
@@ -178,7 +173,7 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
                 </p>
                 <br>
                 <p class="shadow"><span style="color: var(--accent);">Stack:</span>
-                    C#, .NET, Blazor, HTML, CSS, Bootstrap, Figma, MongoDB, Git 
+                    C#, .NET, Blazor, HTML, CSS, Bootstrap, Figma, MongoDB, Git
                 </p>
             </div>
             <div class="img-container">
@@ -202,36 +197,42 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
                     contributed was making their web application work seamlessly
                     across mobile, tablet, and desktop. This opened the
                     opportunity for their clients to manage cases on the go
-                    and is a new selling point for Facilicase’s software. 
+                    and is a new selling point for Facilicase’s software.
                 </p>
                 <br>
-                <p class="shadow"><span style="color: var(--accent);">Stack:</span> 
+                <p class="shadow"><span style="color: var(--accent);">Stack:</span>
                     C#, .NET, Blazor, JavaScript, HTML, CSS, MongoDB, Json, Git
                 </p>
+                <div class="source"> 
+                    <a href="https://github.com/Pizza4360/FlyingPizza">Source Code</a>
+                </div>
             </div>
         </div>
 
-        <h2 id="cmd4">Climbing Route Detection | Fullstack</h2>
-        <div id="cmd5" class="bio">
+        <h2 id="cmd8">Climbing Route Detection | Fullstack</h2>
+        <div id="cmd9" class="bio">
             <div class="text">
-                <p class="shadow">Bouldering walls can be a bit overwhelming. Especially if you're a kid 
+                <p class="shadow">Bouldering walls can be a bit overwhelming. Especially if you're a kid
                     with a lower vantage point. This program aims to make climbing more accessible and easier.
-                    Uploading a photo prompts the user to choose from a predefined list of colors. Then using OpenCV 
-                    and some morphological processes the image is color isolated and the detected holds are cleaned 
-                    up. The output is a black and white image with only your chosen route in color. As an 
+                    Uploading a photo prompts the user to choose from a predefined list of colors. Then using OpenCV
+                    and some morphological processes the image is color isolated and the detected holds are cleaned
+                    up. The output is a black and white image with only your chosen route in color. As an
                     added bonus the program uses average hold size to suggest a difficulty rating to the user.
                 </p>
                 <br>
                 <p class="shadow"><span style="color: var(--accent);">Stack:</span>
-                    Python, OpenCV, Jupyter Notebook 
+                    Python, OpenCV, Jupyter Notebook
                 </p>
+                <div class="source"> 
+                    <a href="https://github.com/dbowling21/Climbing-Route-Detection/blob/main/ClimbingRouteDetection.ipynb">Source Code</a>
+                </div>
             </div>
             <div class="img-container">
                 <img class="img" src="Wall.PNG">
             </div>
         </div>
 
-        <h1 id="cmd8" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
+        <h1 id="cmd10" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
         <b id="cursor3" class="name" style="opacity: 0;">_</b>
         <b id="goals" class="name"> </b>
 
