@@ -6,7 +6,11 @@
 
 h1{color: var(--accent);}
 
-h2{font-size: 3em;
+h2{
+    font-size: 3em;
+    margin-left: 40px; 
+    margin-bottom: 0px; 
+    opacity: 1;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
 
@@ -72,6 +76,12 @@ p{
 }
 
 @media only screen and (max-width: 600px){
+   
+    h2{
+        font-size: 1.5em;
+        margin-left: 30px !important;
+    }
+
     .navbar{
         height: 130px;
         padding: 10px;
@@ -86,11 +96,11 @@ p{
 
     .container{ margin: 10px !important; }
 
-    .bio{ padding: 30px !important;}
+    .bio{ 
+        padding: 10px !important;
+        font-size: 1.2em !important;
+    }
     
-    /* .img{
-        display: none;
-    } */
 }
 
 @media only screen and (min-width: 601px){
