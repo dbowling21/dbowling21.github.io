@@ -104,7 +104,7 @@ p{
 .wrapper {
     margin: none;
     padding: none;
-    /* display: none; */
+    display: none;
 }
 
 .counters{
