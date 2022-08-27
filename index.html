@@ -9,26 +9,34 @@
         var text = '';
         var delay = 0;
         var speed = 50;
-        var id = '';
+        var elem = '';
         var myInterval;
         var curr_cursor;
         var list = ["cmd1", "cmd2", "cmd3"];
         var flash = true;
+        var loaded = [];
 
-        // setTimeout(function typeWriter() {
-        //     if (i < txt.length) {
-        //         document.getElementById("demo").innerHTML += txt.charAt(i);
-        //         i++;
-        //         setTimeout(typeWriter, speed);
-        //     }
-        //     clearInterval(myInterval);
-        //     document.getElementById('cursor').style.opacity = 0;
-        // }, 3000);
+        setTimeout(function () {
+            cursor_blink('cursor2');
+            setTimeout(function () {
+                typer('typer', 'Show Projects', 100);
+            }, 3400); //lets cursor blink for 3.4sec
 
-        function typer(test_id, text_input, delay_in) {
+            setTimeout(function () {
+                j = 0;
+                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
+                cmds.apply(this, list);
+            }, 4600); //waits to display projects for 4.6sec
+
+        }, 4700); //Starts 2nd command cursor blink after 4.7sec
+
+        //Checks for when commands come into viewport to load new sections
+        window.addEventListener("scroll", cmdLoader);
+
+        function typer(id, text_input, delay_in) {
             k = 0;
             delay = delay_in;
-            id = test_id;
+            elem = id;
             text = text_input;
             setTimeout(() => {
                 clearInterval(myInterval);
@@ -39,7 +47,7 @@
 
         function writer() {
             if (k < text.length) {
-                document.getElementById(id).innerHTML += text.charAt(k);
+                document.getElementById(elem).innerHTML += text.charAt(k);
                 k++;
                 setTimeout(writer, 50);
             }
@@ -58,14 +66,6 @@
             }, 800);
         }
 
-        // function cmds(cmdID) {
-        //     if (j < 6) {
-        //         j++;
-        //         document.getElementById(cmdID + j).style.opacity = 1;
-        //         setTimeout(function(){cmds(cmdID)}, 400);
-        //     }
-        // }
-
         function cmds() {
             if (j < list.length) {
                 document.getElementById(list[j]).style.opacity = 1;
@@ -74,34 +74,26 @@
             }
         }
 
-        setTimeout(function () {
-            cursor_blink('cursor2');
-            setTimeout(function () {
-                typer('typer', 'Show Projects', 100);
-            }, 3400); //lets cursor blink for 3.4sec
-
-            setTimeout(function () { 
-                j = 0;
-                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
-                cmds.apply(this, list);
-            }, 4600); //waits to display projects for 4.6sec
-
-        }, 4700); //Starts 2nd command cursor blink after 4.7sec
-
-        var myScrollFunc = function () {
-            var y = window.scrollY;
-            console.log("ScrollY: " + y);
-            console.log("flash: " + flash);
-            if (y >= 1016 && flash) {
-                flash = false;
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~RAN~~~~~~~~~~~~~~~~");
+        var cmdLoader = function () {
+            if (isInViewport('cmd10') && !loaded.includes('cmd10')) {
                 cursor_blink('cursor3');
-            } else {
-
+                setTimeout(function () {
+                    typer('goals', 'Show Goals', 100);
+                }, 3400); //lets cursor blink for 3.4sec
+                loaded.push('cmd10');
             }
         };
 
-        window.addEventListener("scroll", myScrollFunc);
+        var isInViewport = function (id) {
+            var elem = document.getElementById(id);
+            var bounding = elem.getBoundingClientRect();
+            return (bounding.top >= 0 && bounding.left >= 0 &&
+                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            
+        };
+
     </script>
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
@@ -142,7 +134,8 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
         <b id="demo" class="name"></b>
 
         <div class="bio" style="opacity: 1">
-            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of Denver Alumni.
+            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of
+                Denver Alumni.
                 I graduated Summa Cum Laude with my Bachelor's in
                 Computer Science.
             </p>
@@ -203,7 +196,7 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
                 <p class="shadow"><span style="color: var(--accent);">Stack:</span>
                     C#, .NET, Blazor, JavaScript, HTML, CSS, MongoDB, Json, Git
                 </p>
-                <div class="source"> 
+                <div class="source">
                     <a href="https://github.com/Pizza4360/FlyingPizza">Source Code</a>
                 </div>
             </div>
@@ -223,8 +216,10 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
                 <p class="shadow"><span style="color: var(--accent);">Stack:</span>
                     Python, OpenCV, Jupyter Notebook
                 </p>
-                <div class="source"> 
-                    <a href="https://github.com/dbowling21/Climbing-Route-Detection/blob/main/ClimbingRouteDetection.ipynb">Source Code</a>
+                <div class="source">
+                    <a
+                        href="https://github.com/dbowling21/Climbing-Route-Detection/blob/main/ClimbingRouteDetection.ipynb">Source
+                        Code</a>
                 </div>
             </div>
             <div class="img-container">
