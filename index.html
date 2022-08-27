@@ -12,13 +12,12 @@
         var elem = '';
         var myInterval;
         var curr_cursor;
-        var list = ["cmd1", "cmd2", "cmd3"];
         var flash = true;
         var loaded = [];
 
-        setTimeout(function (){
+        setTimeout(function () {
             staggerDisplay('wrapper1');
-            setTimeout(function (){
+            setTimeout(function () {
                 staggerDisplay('wrapper2');
             }, 800);
         }, 4000);
@@ -26,14 +25,11 @@
         setTimeout(function () {
             cursor_blink('cursor2');
             setTimeout(function () {
-                typer('typer', 'Show Projects', 100);
+                typer('projects_cmd', 'Show Projects', 100);
             }, 3400); //lets cursor blink for 3.4sec
 
             setTimeout(function () {
                 staggerDisplay('wrapper3');
-                // j = 0;
-                // list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
-                // cmds.apply(this, list);
             }, 4600); //waits to display projects for 4.6sec
 
         }, 4700); //Starts 2nd command cursor blink after 4.7sec
@@ -74,32 +70,25 @@
             }, 800);
         }
 
-        function cmds() {
-            if (j < list.length) {
-                document.getElementById(list[j]).style.opacity = 1;
-                j++;
-                setTimeout(function () { cmds.apply(this, list) }, 400);
-            }
-        }
-
-        var cmdLoader = function () {
-            if (isInViewport('cmd10') && !loaded.includes('cmd10')) {
+        function cmdLoader() {
+            if (isInViewport('goalLine') && !loaded.includes('goalLine')) {
                 cursor_blink('cursor3');
                 setTimeout(function () {
-                    typer('goals', 'Show Goals', 100);
+                    typer('goal_cmd', 'Show Goals', 100);
                 }, 3400); //lets cursor blink for 3.4sec
-                loaded.push('cmd10');
+                loaded.push('goalLine');
             }
         };
 
-        var isInViewport = function (id) {
+        function isInViewport(id) {
             var elem = document.getElementById(id);
             var bounding = elem.getBoundingClientRect();
-            return (bounding.top >= 0 && bounding.left >= 0 &&
+            return (
+                bounding.top >= 0 &&
+                bounding.left >= 0 &&
                 bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
                 bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
-
         };
 
         function staggerDisplay(id) {
@@ -123,13 +112,13 @@
 
 <html>
 
-<body class="page" onload="cursor_blink('cursor1'); typer('demo', 'Show Bio', 3000);">
+<body class="page" onload="cursor_blink('cursor1'); typer('bio_cmd', 'Show Bio', 3000);">
 
     <div class="navbar">
         <div class="icon-container">
             <a class="hover" href="index.html#projects">Projects</a>
             <b>/</b>
-            <a class="hover" href="index.html#projects" style="text-decoration: none;">Goals</a>
+            <a class="hover" href="index.html#goals" style="text-decoration: none;">Goals</a>
             <b>/</b>
             <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
             <b>/</b>
@@ -151,17 +140,17 @@
     <div class="container">
         <h1 class="name" style="opacity: 1;">David/Portfolio$</h1>
         <b id="cursor1" class="name">_</b>
-        <b id="demo" class="name"></b>
+        <b id="bio_cmd" class="name"></b>
 
-        <div id="bio1" class="bio" style="opacity: 1">
+        <div class="bio" style="opacity: 1">
             <div id="wrapper1" class="wrapper">
-                <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of
+                <p class="shadow" style="margin: 20px; opacity: 0;">Hi! I'm a Metropolitan State University of
                     Denver Alumni.
                     I graduated Summa Cum Laude with my Bachelor's in
                     Computer Science.
                 </p>
                 <br>
-                <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd2">
+                <p class="shadow" style="margin: 20px; opacity: 0;">
                     I have a passion for building great intuitive UI as well as
                     a love for software development. Take a look at some of my projects below!
                 </p>
@@ -169,15 +158,15 @@
         </div>
 
         <div id="wrapper2" class="wrapper">
-            <h1 id="cmd3" class="name"><a id="projects"></a>David/Portfolio$</h1>
+            <h1 class="name"><a id="projects"></a>David/Portfolio$</h1>
             <b id="cursor2" class="name" style="opacity: 0;">_</b>
-            <b id="typer" class="name"> </b>
+            <b id="projects_cmd" class="name"> </b>
         </div>
 
         <div id="wrapper3" class="wrapper">
-            <h2 id="cmd4">FaciliCase | Frontend Web Developer</h2>
+            <h2>FaciliCase | Frontend Web Developer</h2>
 
-            <div id="cmd5" class="bio">
+            <div class="bio">
                 <div class="text">
                     <p class="shadow">With FaciliCase, I
                         built a new customer experience to streamline the work
@@ -199,8 +188,8 @@
                 </div>
             </div>
 
-            <h2 id="cmd6">Drone Delivery Service | Frontend Developer</h2>
-            <div id="cmd7" class="bio">
+            <h2>Drone Delivery Service | Frontend Developer</h2>
+            <div class="bio">
                 <div class="img-container">
                     <video class="img" src="DemoFallback.mp4" controls>
                         <source src="movie.mp4" type="video/mp4">
@@ -227,8 +216,8 @@
                 </div>
             </div>
 
-            <h2 id="cmd8">Climbing Route Detection | Fullstack</h2>
-            <div id="cmd9" class="bio">
+            <h2>Climbing Route Detection | Fullstack</h2>
+            <div class="bio">
                 <div class="text">
                     <p class="shadow">Bouldering walls can be a bit overwhelming. Especially if you're a kid
                         with a lower vantage point. This program aims to make climbing more accessible and easier.
@@ -252,11 +241,10 @@
                 </div>
             </div>
 
+            <h1 id="goalLine" class="name" style="opacity: 0;"><a id="goals"></a>David/Portfolio$</h1>
+            <b id="cursor3" class="name" style="opacity: 0;">_</b>
+            <b id="goal_cmd" class="name"> </b>
         </div>
-
-        <h1 id="cmd10" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
-        <b id="cursor3" class="name" style="opacity: 0;">_</b>
-        <b id="goals" class="name"> </b>
 
 
         <!-- Goals ( full Section) -->
