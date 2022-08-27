@@ -16,6 +16,13 @@
         var flash = true;
         var loaded = [];
 
+        setTimeout(function (){
+            staggerDisplay('wrapper1');
+            setTimeout(function (){
+                staggerDisplay('wrapper2');
+            }, 800);
+        }, 4000);
+
         setTimeout(function () {
             cursor_blink('cursor2');
             setTimeout(function () {
@@ -23,9 +30,10 @@
             }, 3400); //lets cursor blink for 3.4sec
 
             setTimeout(function () {
-                j = 0;
-                list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
-                cmds.apply(this, list);
+                staggerDisplay('wrapper3');
+                // j = 0;
+                // list = ["cmd4", "cmd5", "cmd6", "cmd7", "cmd8", "cmd9", "cmd10"];
+                // cmds.apply(this, list);
             }, 4600); //waits to display projects for 4.6sec
 
         }, 4700); //Starts 2nd command cursor blink after 4.7sec
@@ -90,10 +98,23 @@
             return (bounding.top >= 0 && bounding.left >= 0 &&
                 bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
                 bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-            
+            );
+
         };
 
+        function staggerDisplay(id) {
+            var children = document.getElementById(id).children;
+            for (var i = 0; i < children.length; i++) {
+                displayI(children[i], i);
+            }
+        };
+
+        function displayI(child, i) {
+            var offset = i * 200
+            setTimeout(function wait() {
+                child.style.opacity = 1;
+            }, offset)
+        };
     </script>
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
@@ -102,8 +123,7 @@
 
 <html>
 
-<body class="page" onload="cursor_blink('cursor1'); typer('demo', 'Show Bio', 3000); 
-setTimeout(function (){cmds.apply(this,list)}, 4000);">
+<body class="page" onload="cursor_blink('cursor1'); typer('demo', 'Show Bio', 3000);">
 
     <div class="navbar">
         <div class="icon-container">
@@ -133,98 +153,105 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
         <b id="cursor1" class="name">_</b>
         <b id="demo" class="name"></b>
 
-        <div class="bio" style="opacity: 1">
-            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of
-                Denver Alumni.
-                I graduated Summa Cum Laude with my Bachelor's in
-                Computer Science.
-            </p>
-            <br>
-            <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd2">
-                I have a passion for building great intuitive UI as well as
-                a love for software development. Take a look at some of my projects below!
-            </p>
-        </div>
-
-        <h1 id="cmd3" class="name"><a id="projects"></a>David/Portfolio$</h1>
-        <b id="cursor2" class="name" style="opacity: 0;">_</b>
-        <b id="typer" class="name"> </b>
-
-        <h2 id="cmd4">FaciliCase | Frontend Web Developer</h2>
-
-        <div id="cmd5" class="bio">
-            <div class="text">
-                <p class="shadow">With FaciliCase, I
-                    built a new customer experience to streamline the work
-                    their clients perform. I worked directly with mediators
-                    to create and iterate on the features and UI that were
-                    critical to them. One of the most important updates I
-                    contributed was making their web application work seamlessly
-                    across mobile, tablet, and desktop. This opened the
-                    opportunity for their clients to manage cases on the go
-                    and is a new selling point for Facilicase’s software.
+        <div id="bio1" class="bio" style="opacity: 1">
+            <div id="wrapper1" class="wrapper">
+                <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd1">Hi! I'm a Metropolitan State University of
+                    Denver Alumni.
+                    I graduated Summa Cum Laude with my Bachelor's in
+                    Computer Science.
                 </p>
                 <br>
-                <p class="shadow"><span style="color: var(--accent);">Stack:</span>
-                    C#, .NET, Blazor, HTML, CSS, Bootstrap, Figma, MongoDB, Git
+                <p class="shadow" style="margin: 20px; opacity: 0;" id="cmd2">
+                    I have a passion for building great intuitive UI as well as
+                    a love for software development. Take a look at some of my projects below!
                 </p>
-            </div>
-            <div class="img-container">
-                <img class="img" src="CaseSearch.PNG">
             </div>
         </div>
 
-        <h2 id="cmd6">Drone Delivery Service | Frontend Developer</h2>
-        <div id="cmd7" class="bio">
-            <div class="img-container">
-                <video class="img" src="DemoFallback.mp4" controls>
-                    <source src="movie.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="text">
-                <p class="shadow">With FaciliCase, I
-                    built a new customer experience to streamline the work
-                    their clients perform. I worked directly with mediators
-                    to create and iterate on the features and UI that were
-                    critical to them. One of the most important updates I
-                    contributed was making their web application work seamlessly
-                    across mobile, tablet, and desktop. This opened the
-                    opportunity for their clients to manage cases on the go
-                    and is a new selling point for Facilicase’s software.
-                </p>
-                <br>
-                <p class="shadow"><span style="color: var(--accent);">Stack:</span>
-                    C#, .NET, Blazor, JavaScript, HTML, CSS, MongoDB, Json, Git
-                </p>
-                <div class="source">
-                    <a href="https://github.com/Pizza4360/FlyingPizza">Source Code</a>
+        <div id="wrapper2" class="wrapper">
+            <h1 id="cmd3" class="name"><a id="projects"></a>David/Portfolio$</h1>
+            <b id="cursor2" class="name" style="opacity: 0;">_</b>
+            <b id="typer" class="name"> </b>
+        </div>
+
+        <div id="wrapper3" class="wrapper">
+            <h2 id="cmd4">FaciliCase | Frontend Web Developer</h2>
+
+            <div id="cmd5" class="bio">
+                <div class="text">
+                    <p class="shadow">With FaciliCase, I
+                        built a new customer experience to streamline the work
+                        their clients perform. I worked directly with mediators
+                        to create and iterate on the features and UI that were
+                        critical to them. One of the most important updates I
+                        contributed was making their web application work seamlessly
+                        across mobile, tablet, and desktop. This opened the
+                        opportunity for their clients to manage cases on the go
+                        and is a new selling point for Facilicase’s software.
+                    </p>
+                    <br>
+                    <p class="shadow"><span style="color: var(--accent);">Stack:</span>
+                        C#, .NET, Blazor, HTML, CSS, Bootstrap, Figma, MongoDB, Git
+                    </p>
+                </div>
+                <div class="img-container">
+                    <img class="img" src="CaseSearch.PNG">
                 </div>
             </div>
-        </div>
 
-        <h2 id="cmd8">Climbing Route Detection | Fullstack</h2>
-        <div id="cmd9" class="bio">
-            <div class="text">
-                <p class="shadow">Bouldering walls can be a bit overwhelming. Especially if you're a kid
-                    with a lower vantage point. This program aims to make climbing more accessible and easier.
-                    Uploading a photo prompts the user to choose from a predefined list of colors. Then using OpenCV
-                    and some morphological processes the image is color isolated and the detected holds are cleaned
-                    up. The output is a black and white image with only your chosen route in color. As an
-                    added bonus the program uses average hold size to suggest a difficulty rating to the user.
-                </p>
-                <br>
-                <p class="shadow"><span style="color: var(--accent);">Stack:</span>
-                    Python, OpenCV, Jupyter Notebook
-                </p>
-                <div class="source">
-                    <a
-                        href="https://github.com/dbowling21/Climbing-Route-Detection/blob/main/ClimbingRouteDetection.ipynb">Source
-                        Code</a>
+            <h2 id="cmd6">Drone Delivery Service | Frontend Developer</h2>
+            <div id="cmd7" class="bio">
+                <div class="img-container">
+                    <video class="img" src="DemoFallback.mp4" controls>
+                        <source src="movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="text">
+                    <p class="shadow">With FaciliCase, I
+                        built a new customer experience to streamline the work
+                        their clients perform. I worked directly with mediators
+                        to create and iterate on the features and UI that were
+                        critical to them. One of the most important updates I
+                        contributed was making their web application work seamlessly
+                        across mobile, tablet, and desktop. This opened the
+                        opportunity for their clients to manage cases on the go
+                        and is a new selling point for Facilicase’s software.
+                    </p>
+                    <br>
+                    <p class="shadow"><span style="color: var(--accent);">Stack:</span>
+                        C#, .NET, Blazor, JavaScript, HTML, CSS, MongoDB, Json, Git
+                    </p>
+                    <div class="source">
+                        <a href="https://github.com/Pizza4360/FlyingPizza">Source Code</a>
+                    </div>
                 </div>
             </div>
-            <div class="img-container">
-                <img class="img" src="Wall.PNG">
+
+            <h2 id="cmd8">Climbing Route Detection | Fullstack</h2>
+            <div id="cmd9" class="bio">
+                <div class="text">
+                    <p class="shadow">Bouldering walls can be a bit overwhelming. Especially if you're a kid
+                        with a lower vantage point. This program aims to make climbing more accessible and easier.
+                        Uploading a photo prompts the user to choose from a predefined list of colors. Then using OpenCV
+                        and some morphological processes the image is color isolated and the detected holds are cleaned
+                        up. The output is a black and white image with only your chosen route in color. As an
+                        added bonus the program uses average hold size to suggest a difficulty rating to the user.
+                    </p>
+                    <br>
+                    <p class="shadow"><span style="color: var(--accent);">Stack:</span>
+                        Python, OpenCV, Jupyter Notebook
+                    </p>
+                    <div class="source">
+                        <a
+                            href="https://github.com/dbowling21/Climbing-Route-Detection/blob/main/ClimbingRouteDetection.ipynb">Source
+                            Code</a>
+                    </div>
+                </div>
+                <div class="img-container">
+                    <img class="img" src="Wall.PNG">
+                </div>
             </div>
+
         </div>
 
         <h1 id="cmd10" class="name" style="opacity: 0;"><a id="projects"></a>David/Portfolio$</h1>
@@ -235,6 +262,14 @@ setTimeout(function (){cmds.apply(this,list)}, 4000);">
         <!-- Goals ( full Section) -->
         <!-- Hobbies ( IM A HUMAN) -->
         <!--  Quote (in footer or at bottom?) -->
+        <div id="childTest">
+            <div style="height: 40px; opacity: 0; background-color: red; width: 100%">
+                <div style="opacity: 1; background-color: purple; width: 100%">TESTER</div>
+            </div>
+            <div style="opacity: 0; background-color: orange; width: 100%">2</div>
+            <div style="opacity: 0; background-color: blue; width: 100%">3</div>
+            <div style="opacity: 0; background-color: green; width: 100%">4</div>
+        </div>
     </div>
 </body>
 

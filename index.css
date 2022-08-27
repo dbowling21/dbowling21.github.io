@@ -111,6 +111,11 @@ p{
     }
 }
 
+.wrapper {
+    margin: none;
+    padding: none;
+}
+
 .bio{
     font-size: 2em;
     box-sizing:border-box;
