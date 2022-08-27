@@ -71,12 +71,30 @@
         }
 
         function cmdLoader() {
-            if (isInViewport('goalLine') && !loaded.includes('goalLine')) {
+            if (isInViewport('goalLine') && !loaded.includes('goalLine') && document.getElementById('goalLine').style.opacity == 1) {
                 cursor_blink('cursor3');
                 setTimeout(function () {
                     typer('goal_cmd', 'Show Goals', 100);
                 }, 3400); //lets cursor blink for 3.4sec
                 loaded.push('goalLine');
+                setTimeout(function () {
+                    staggerDisplay('wrapper4');
+                }, 4600); //waits to display goals for 4.6sec
+            }
+
+            if (isInViewport('aboutLine') && !loaded.includes('aboutLine') && document.getElementById('aboutLine').style.opacity == 1) {
+                cursor_blink('cursor4');
+                setTimeout(function () {
+                    typer('about_cmd', 'Show About', 100);
+                }, 3400); //lets cursor blink for 3.4sec
+                loaded.push('aboutLine');
+                setTimeout(function () {
+                    staggerDisplay('wrapper5');
+                }, 4600); //waits to display about for 4.6sec
+
+                setTimeout( function () {
+                    document.getElementById('footer').style.visibility = "visible"; 
+                }, 5200);
             }
         };
 
@@ -92,6 +110,7 @@
         };
 
         function staggerDisplay(id) {
+            document.getElementById(id).style.display = "block";
             var children = document.getElementById(id).children;
             for (var i = 0; i < children.length; i++) {
                 displayI(children[i], i);
@@ -104,6 +123,26 @@
                 child.style.opacity = 1;
             }, offset)
         };
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mybutton = document.getElementById("returnTop");
+            window.onscroll = function () { scrollFunction() };
+        }, false);
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
     <link href="./index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2e9d3d932b.js" crossorigin="anonymous"></script>
@@ -120,7 +159,7 @@
             <b>/</b>
             <a class="hover" href="index.html#goals" style="text-decoration: none;">Goals</a>
             <b>/</b>
-            <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
+            <a class="hover" href="index.html#about" style="text-decoration: none;">About</a>
             <b>/</b>
             <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
             <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
@@ -137,6 +176,8 @@
         </div>
     </div>
 
+    <button onclick="topFunction()" id="returnTop" class="returnTop" title="Go to top">Top</button>
+
     <div class="container">
         <h1 class="name" style="opacity: 1;">David/Portfolio$</h1>
         <b id="cursor1" class="name">_</b>
@@ -144,13 +185,13 @@
 
         <div class="bio" style="opacity: 1">
             <div id="wrapper1" class="wrapper">
-                <p class="shadow" style="margin: 20px; opacity: 0;">Hi! I'm a Metropolitan State University of
+                <p class="shadow opac" style="margin: 20px;">Hi! I'm a Metropolitan State University of
                     Denver Alumni.
                     I graduated Summa Cum Laude with my Bachelor's in
                     Computer Science.
                 </p>
                 <br>
-                <p class="shadow" style="margin: 20px; opacity: 0;">
+                <p class="shadow opac" style="margin: 20px;">
                     I have a passion for building great intuitive UI as well as
                     a love for software development. Take a look at some of my projects below!
                 </p>
@@ -159,7 +200,7 @@
 
         <div id="wrapper2" class="wrapper">
             <h1 class="name"><a id="projects"></a>David/Portfolio$</h1>
-            <b id="cursor2" class="name" style="opacity: 0;">_</b>
+            <b id="cursor2" class="name opac">_</b>
             <b id="projects_cmd" class="name"> </b>
         </div>
 
@@ -241,24 +282,82 @@
                 </div>
             </div>
 
-            <h1 id="goalLine" class="name" style="opacity: 0;"><a id="goals"></a>David/Portfolio$</h1>
-            <b id="cursor3" class="name" style="opacity: 0;">_</b>
+            <h1 id="goalLine" class="name opac"><a id="goals"></a>David/Portfolio$</h1>
+            <b id="cursor3" class="name opac">_</b>
             <b id="goal_cmd" class="name"> </b>
         </div>
 
+        <div id="wrapper4" class="wrapper counters">
 
-        <!-- Goals ( full Section) -->
-        <!-- Hobbies ( IM A HUMAN) -->
-        <!--  Quote (in footer or at bottom?) -->
-        <div id="childTest">
-            <div style="height: 40px; opacity: 0; background-color: red; width: 100%">
-                <div style="opacity: 1; background-color: purple; width: 100%">TESTER</div>
+            <p class="goals opac" style="margin-top: 40px;">I'm working to further develop my JavaScript. I want to
+                bring my UI/UX interactions to
+                the next level by integrating features into web applications that can't be achieved without it
+            </p>
+            <br>
+            <p class="goals opac">I'm working to further develop my JavaScript. I want to bring my UI/UX interactions to
+                the next level by integrating features into web applications that can't be achieved without it
+            </p>
+            <br>
+            <p class="goals opac" style="margin-bottom: 40px;">I'm working to further develop my JavaScript. I want to
+                bring my UI/UX interactions to
+                the next level by integrating features into web applications that can't be achieved without it
+            </p>
+
+            <h1 id="aboutLine" class="name opac"><a id="about"></a>David/Portfolio$</h1>
+            <b id="cursor4" class="name opac">_</b>
+            <b id="about_cmd" class="name"> </b>
+        </div>
+
+        <div id="wrapper5" class="wrapper">
+
+            <div class="bio">
+                <div class="text">
+                    <p class="shadow">In my freetime I love to recharge in the outdoors.
+                        Backpacking is my favorite way to get outside and experience Colorado's wilderness.
+                        I backpacked the full Colorado Trail in 2020, completing it's 485 miles in 30 days.
+                        With a new found love for thru-hiking I took on the challenge of the Wind River High-Route
+                        in the summer of 2021. Photographing these experiences proves to be another of my passions.
+                    </p>
+                </div>
+                <div class="img-container">
+                    <img class="img" src="202.jpg">
+                </div>
             </div>
-            <div style="opacity: 0; background-color: orange; width: 100%">2</div>
-            <div style="opacity: 0; background-color: blue; width: 100%">3</div>
-            <div style="opacity: 0; background-color: green; width: 100%">4</div>
+
+            <div class="bio">
+                <div class="img-container">
+                    <img class="img" src="Profile.jpg">
+                </div>
+                <div class="text">
+                    <p class="shadow">My love for learning doesn't only apply to my
+                        professional life. I'm super excited to develop my skills as a climber
+                        to push my mountain objectives further. I also love to snowboard and
+                        as a result of Covid-19 I took an established skill into a new environment.
+                        The backcountry. Managing Avalanche risk and emergency preparedness is an
+                        ever evolving skill that will push me to learn the rest of my life.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--  Quote (in footer or at bottom?) -->
+    </div>
+
+    <div id="footer" class="footer">
+        <div class="footer-content">
+            <span style="color: var(--accent)">Call</span>
+            <br>
+            <br>
+            <a class="hover" href="tel:720-514-0685">720-514-0685</a>
+        </div>
+        <div class="footer-content">
+            <span style="color: var(--accent)">Email</span>
+            <br>
+            <br>
+            <a class="hover" href="mailto:davidbowling21@gmail.com">davidbowling21@gmail.com</a>
         </div>
     </div>
+
 </body>
 
 </html>
