@@ -14,28 +14,50 @@
         var curr_cursor;
         var flash = true;
         var loaded = [];
+        var quicklinked = false;
 
-        setTimeout(function () {
-            staggerDisplay('wrapper1');
-            setTimeout(function () {
-                staggerDisplay('wrapper2');
-            }, 800);
-        }, 4000);
 
-        setTimeout(function () {
-            cursor_blink('cursor2');
-            setTimeout(function () {
-                typer('projects_cmd', 'Show Projects', 100);
-            }, 3400); //lets cursor blink for 3.4sec
 
-            setTimeout(function () {
-                staggerDisplay('wrapper3');
-            }, 4600); //waits to display projects for 4.6sec
+        document.addEventListener('DOMContentLoaded', function () {
+            const element = document.getElementById("project_link");
 
-        }, 4700); //Starts 2nd command cursor blink after 4.7sec
+            element.addEventListener("click", function () {
+                quicklinked = true;
+                displayAll(); 
+            });
 
-        //Checks for when commands come into viewport to load new sections
-        window.addEventListener("scroll", cmdLoader);
+            if (quicklinked) {
+                displayAll();
+            }
+            else {
+                cursor_blink('cursor1');
+                typer('bio_cmd', 'Show Bio', 3000);
+                setTimeout(function () {
+                    staggerDisplay('wrapper1');
+                    setTimeout(function () {
+                        staggerDisplay('wrapper2');
+                    }, 800);
+                }, 4000);
+
+                setTimeout(function () {
+                    cursor_blink('cursor2');
+                    setTimeout(function () {
+                        typer('projects_cmd', 'Show Projects', 100);
+                    }, 3400); //lets cursor blink for 3.4sec
+
+                    setTimeout(function () {
+                        staggerDisplay('wrapper3');
+                    }, 4600); //waits to display projects for 4.6sec
+
+                }, 4700); //Starts 2nd command cursor blink after 4.7sec
+
+                //Checks for when commands come into viewport to load new sections
+                window.addEventListener("scroll", cmdLoader);
+            }
+
+        }, false);
+
+
 
         function typer(id, text_input, delay_in) {
             k = 0;
@@ -92,8 +114,8 @@
                     staggerDisplay('wrapper5');
                 }, 4600); //waits to display about for 4.6sec
 
-                setTimeout( function () {
-                    document.getElementById('footer').style.visibility = "visible"; 
+                setTimeout(function () {
+                    document.getElementById('footer').style.visibility = "visible";
                 }, 5200);
             }
         };
@@ -123,6 +145,31 @@
                 child.style.opacity = 1;
             }, offset)
         };
+
+        function displayAll() {
+            document.getElementById('bio_cmd').innerHTML = 'Show Bio';
+            document.getElementById('projects_cmd').innerHTML = 'Show Projects';
+            document.getElementById('goal_cmd').innerHTML = 'Show Goals';
+            document.getElementById('about_cmd').innerHTML = 'Show About';
+
+            const wrappers = document.getElementsByClassName('wrapper');
+            for (var i = 0; i < wrappers.length; i++) {
+                wrappers[i].style.display = 'block';
+                var children = wrappers[i].children;
+                for (var j = 0; j < children.length; j++) {
+                    displayI(children[j], 0);
+                }
+            }
+            setTimeout(function () {
+                document.getElementById('cursor1').style.opacity = 0;
+                document.getElementById('cursor2').style.opacity = 0;
+                document.getElementById('cursor3').style.opacity = 0;
+                document.getElementById('cursor4').style.opacity = 0;
+            }, 0)
+
+            document.getElementById('footer').style.visibility = "visible";
+        }
+
     </script>
 
     <script>
@@ -151,11 +198,12 @@
 
 <html>
 
-<body class="page" onload="cursor_blink('cursor1'); typer('bio_cmd', 'Show Bio', 3000);">
+<body class="page">
 
-    <div class="navbar">
+    <div id="testDisplay" class="navbar">
+        <button onclick="displayAll()" id="displayAll">Top</button>
         <div class="icon-container">
-            <a class="hover" href="index.html#projects">Projects</a>
+            <a id="project_link" class="hover" href="index.html#projects">Projects</a>
             <b>/</b>
             <a class="hover" href="index.html#goals" style="text-decoration: none;">Goals</a>
             <b>/</b>
@@ -193,7 +241,7 @@
                 <br>
                 <p class="shadow opac" style="margin: 20px;">
                     I have a passion for building great intuitive UI as well as
-                    a love for software development. Take a look at some of my projects below!
+                    a love for full stack software development. Take a look at some of my projects below!
                 </p>
             </div>
         </div>
@@ -237,15 +285,14 @@
                     </video>
                 </div>
                 <div class="text">
-                    <p class="shadow">With FaciliCase, I
-                        built a new customer experience to streamline the work
-                        their clients perform. I worked directly with mediators
-                        to create and iterate on the features and UI that were
-                        critical to them. One of the most important updates I
-                        contributed was making their web application work seamlessly
-                        across mobile, tablet, and desktop. This opened the
-                        opportunity for their clients to manage cases on the go
-                        and is a new selling point for Facilicase’s software.
+                    <p class="shadow">For my senior project I worked with an Agile scrum
+                        team of six people to build a drone delivery management system.
+                        I Developed our web application’s responsiveUI using C# and JavaScript,
+                        allowing users to monitor and administer drone fleet changes in real time.
+                        I collaborated with the backend team to connect frontend CRUD controls to our
+                        MongoDB database. The web application also incorporated an interactive map using the
+                        Google Map API and javascript to give real time visual insight into drone locations,
+                        statuses, and deliveries.
                     </p>
                     <br>
                     <p class="shadow"><span style="color: var(--accent);">Stack:</span>
@@ -294,13 +341,14 @@
                 the next level by integrating features into web applications that can't be achieved without it
             </p>
             <br>
-            <p class="goals opac">I'm working to further develop my JavaScript. I want to bring my UI/UX interactions to
-                the next level by integrating features into web applications that can't be achieved without it
+            <p class="goals opac">Cloud based computing is here to stay and is an essential tool in any developers
+                toolkit.
+                I will obtain an AWS certification to bring the cloud to the software I develop
             </p>
             <br>
-            <p class="goals opac" style="margin-bottom: 40px;">I'm working to further develop my JavaScript. I want to
-                bring my UI/UX interactions to
-                the next level by integrating features into web applications that can't be achieved without it
+            <p class="goals opac" style="margin-bottom: 40px;">Supporting industry scale applications means serving
+                thousands of users.
+                I want to build my database skills to better serve applications like these.
             </p>
 
             <h1 id="aboutLine" class="name opac"><a id="about"></a>David/Portfolio$</h1>
@@ -340,7 +388,6 @@
             </div>
         </div>
 
-        <!--  Quote (in footer or at bottom?) -->
     </div>
 
     <div id="footer" class="footer">
