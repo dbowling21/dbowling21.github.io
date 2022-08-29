@@ -19,12 +19,16 @@
 
 
         document.addEventListener('DOMContentLoaded', function () {
-            const element = document.getElementById("project_link");
+            const project = document.getElementById("project_link");
+            const goal = document.getElementById("goal_link");
+            const about = document.getElementById("about_link");
 
-            element.addEventListener("click", function () {
-                quicklinked = true;
-                displayAll(); 
-            });
+            project.addEventListener("click", function () { scrollTo('projects_cmd') });
+
+            goal.addEventListener("click", function () { scrollTo('goal_cmd') });
+
+            about.addEventListener("click", function () { scrollTo('about_cmd') });
+
 
             if (quicklinked) {
                 displayAll();
@@ -40,15 +44,16 @@
                 }, 4000);
 
                 setTimeout(function () {
-                    cursor_blink('cursor2');
-                    setTimeout(function () {
-                        typer('projects_cmd', 'Show Projects', 100);
-                    }, 3400); //lets cursor blink for 3.4sec
+                    if (document.getElementById('projects_cmd').innerHTML == "") {
+                        cursor_blink('cursor2');
+                        setTimeout(function () {
+                            typer('projects_cmd', 'Show Projects', 100);
+                        }, 3400); //lets cursor blink for 3.4sec
 
-                    setTimeout(function () {
-                        staggerDisplay('wrapper3');
-                    }, 4600); //waits to display projects for 4.6sec
-
+                        setTimeout(function () {
+                            staggerDisplay('wrapper3');
+                        }, 4600); //waits to display projects for 4.6sec
+                    }
                 }, 4700); //Starts 2nd command cursor blink after 4.7sec
 
                 //Checks for when commands come into viewport to load new sections
@@ -57,6 +62,13 @@
 
         }, false);
 
+        function scrollTo(id) {
+            console.log("ID: " + id);
+            quicklinked = true;
+            displayAll();
+            const y = document.getElementById(id).getBoundingClientRect().top;
+            document.documentElement.scrollTop = y;
+        }
 
 
         function typer(id, text_input, delay_in) {
@@ -68,11 +80,15 @@
                 clearInterval(myInterval);
                 document.getElementById(curr_cursor).style.opacity = 0;
                 writer();
-            }, delay)
+            }, delay);
+            setTimeout(() => {
+                document.getElementById(id).innerHTML = text_input;
+            }, delay + 700)
+
         }
 
         function writer() {
-            if (k < text.length) {
+            if (k < text.length && document.getElementById(elem).innerHTML.length < text.length ) {
                 document.getElementById(elem).innerHTML += text.charAt(k);
                 k++;
                 setTimeout(writer, 50);
@@ -81,6 +97,7 @@
 
         function cursor_blink(curr) {
             curr_cursor = curr
+            document.getElementById(curr_cursor).innerHTML = "_";
             myInterval = setInterval(() => {
                 if (cursor) {
                     document.getElementById(curr_cursor).style.opacity = 0;
@@ -93,30 +110,32 @@
         }
 
         function cmdLoader() {
-            if (isInViewport('goalLine') && !loaded.includes('goalLine') && document.getElementById('goalLine').style.opacity == 1) {
-                cursor_blink('cursor3');
-                setTimeout(function () {
-                    typer('goal_cmd', 'Show Goals', 100);
-                }, 3400); //lets cursor blink for 3.4sec
-                loaded.push('goalLine');
-                setTimeout(function () {
-                    staggerDisplay('wrapper4');
-                }, 4600); //waits to display goals for 4.6sec
-            }
+            if (quicklinked == false) {
+                if (isInViewport('goalLine') && !loaded.includes('goalLine') && document.getElementById('goalLine').style.opacity == 1) {
+                    cursor_blink('cursor3');
+                    setTimeout(function () {
+                        typer('goal_cmd', 'Show Goals', 100);
+                    }, 3400); //lets cursor blink for 3.4sec
+                    loaded.push('goalLine');
+                    setTimeout(function () {
+                        staggerDisplay('wrapper4');
+                    }, 4600); //waits to display goals for 4.6sec
+                }
 
-            if (isInViewport('aboutLine') && !loaded.includes('aboutLine') && document.getElementById('aboutLine').style.opacity == 1) {
-                cursor_blink('cursor4');
-                setTimeout(function () {
-                    typer('about_cmd', 'Show About', 100);
-                }, 3400); //lets cursor blink for 3.4sec
-                loaded.push('aboutLine');
-                setTimeout(function () {
-                    staggerDisplay('wrapper5');
-                }, 4600); //waits to display about for 4.6sec
+                if (isInViewport('aboutLine') && !loaded.includes('aboutLine') && document.getElementById('aboutLine').style.opacity == 1) {
+                    cursor_blink('cursor4');
+                    setTimeout(function () {
+                        typer('about_cmd', 'Show About', 100);
+                    }, 3400); //lets cursor blink for 3.4sec
+                    loaded.push('aboutLine');
+                    setTimeout(function () {
+                        staggerDisplay('wrapper5');
+                    }, 4600); //waits to display about for 4.6sec
 
-                setTimeout(function () {
-                    document.getElementById('footer').style.visibility = "visible";
-                }, 5200);
+                    setTimeout(function () {
+                        document.getElementById('footer').style.visibility = "visible";
+                    }, 5200);
+                }
             }
         };
 
@@ -147,11 +166,6 @@
         };
 
         function displayAll() {
-            document.getElementById('bio_cmd').innerHTML = 'Show Bio';
-            document.getElementById('projects_cmd').innerHTML = 'Show Projects';
-            document.getElementById('goal_cmd').innerHTML = 'Show Goals';
-            document.getElementById('about_cmd').innerHTML = 'Show About';
-
             const wrappers = document.getElementsByClassName('wrapper');
             for (var i = 0; i < wrappers.length; i++) {
                 wrappers[i].style.display = 'block';
@@ -160,7 +174,12 @@
                     displayI(children[j], 0);
                 }
             }
+
             setTimeout(function () {
+                document.getElementById('bio_cmd').innerHTML = 'Show Bio';
+                document.getElementById('projects_cmd').innerHTML = 'Show Projects';
+                document.getElementById('goal_cmd').innerHTML = 'Show Goals';
+                document.getElementById('about_cmd').innerHTML = 'Show About';
                 document.getElementById('cursor1').style.opacity = 0;
                 document.getElementById('cursor2').style.opacity = 0;
                 document.getElementById('cursor3').style.opacity = 0;
@@ -203,11 +222,11 @@
     <div id="testDisplay" class="navbar">
         <button onclick="displayAll()" id="displayAll">Top</button>
         <div class="icon-container">
-            <a id="project_link" class="hover" href="index.html#projects">Projects</a>
+            <a id="project_link" class="hover">Projects</a>
             <b>/</b>
-            <a class="hover" href="index.html#goals" style="text-decoration: none;">Goals</a>
+            <a id="goal_link" class="hover" style="text-decoration: none;">Goals</a>
             <b>/</b>
-            <a class="hover" href="index.html#about" style="text-decoration: none;">About</a>
+            <a id="about_link" class="hover" style="text-decoration: none;">About</a>
             <b>/</b>
             <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
             <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
@@ -228,7 +247,7 @@
 
     <div class="container">
         <h1 class="name" style="opacity: 1;">David/Portfolio$</h1>
-        <b id="cursor1" class="name">_</b>
+        <b id="cursor1" class="name">&nbsp</b>
         <b id="bio_cmd" class="name"></b>
 
         <div class="bio" style="opacity: 1">
@@ -248,8 +267,8 @@
 
         <div id="wrapper2" class="wrapper">
             <h1 class="name"><a id="projects"></a>David/Portfolio$</h1>
-            <b id="cursor2" class="name opac">_</b>
-            <b id="projects_cmd" class="name"> </b>
+            <b id="cursor2" class="name opac">&nbsp</b>
+            <b id="projects_cmd" class="name"></b>
         </div>
 
         <div id="wrapper3" class="wrapper">
@@ -330,8 +349,8 @@
             </div>
 
             <h1 id="goalLine" class="name opac"><a id="goals"></a>David/Portfolio$</h1>
-            <b id="cursor3" class="name opac">_</b>
-            <b id="goal_cmd" class="name"> </b>
+            <b id="cursor3" class="name opac">&nbsp</b>
+            <b id="goal_cmd" class="name"></b>
         </div>
 
         <div id="wrapper4" class="wrapper counters">
@@ -352,8 +371,8 @@
             </p>
 
             <h1 id="aboutLine" class="name opac"><a id="about"></a>David/Portfolio$</h1>
-            <b id="cursor4" class="name opac">_</b>
-            <b id="about_cmd" class="name"> </b>
+            <b id="cursor4" class="name opac">&nbsp</b>
+            <b id="about_cmd" class="name"></b>
         </div>
 
         <div id="wrapper5" class="wrapper">
