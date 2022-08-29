@@ -96,13 +96,6 @@ p {
     background-color: var(--bery-hover);
 }
 
-.mobile-container {
-    text-align: center;
-    line-height: 55px;
-    font-size: 1.5em;
-    height: 110px;
-}
-
 .wrapper {
     margin: none;
     padding: none;
@@ -258,25 +251,9 @@ p {
 
 }
 
-@media only screen and (min-width: 601px) {
-    .mobile-container {
-        display: none;
-    }
-}
-
 @font-face {
     font-family: JB-bold;
     src: url(JetbrainsMonoBold-51Xez.ttf);
-}
-
-@font-face {
-    font-family: lora-italic;
-    src: url(Lora-Italic.ttf);
-}
-
-@font-face {
-    font-family: lora-regular;
-    src: url(Lora-Regular.ttf);
 }
 
 @font-face {
