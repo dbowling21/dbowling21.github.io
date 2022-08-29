@@ -16,19 +16,14 @@
         var loaded = [];
         var quicklinked = false;
 
-
-
         document.addEventListener('DOMContentLoaded', function () {
             const project = document.getElementById("project_link");
             const goal = document.getElementById("goal_link");
             const about = document.getElementById("about_link");
 
             project.addEventListener("click", function () { scrollTo('projects_cmd') });
-
             goal.addEventListener("click", function () { scrollTo('goal_cmd') });
-
             about.addEventListener("click", function () { scrollTo('about_cmd') });
-
 
             if (quicklinked) {
                 displayAll();
@@ -63,13 +58,11 @@
         }, false);
 
         function scrollTo(id) {
-            console.log("ID: " + id);
             quicklinked = true;
             displayAll();
             const y = document.getElementById(id).getBoundingClientRect().top;
             document.documentElement.scrollTop = y;
         }
-
 
         function typer(id, text_input, delay_in) {
             k = 0;
@@ -219,7 +212,7 @@
 
 <body class="page">
 
-    <div id="testDisplay" class="navbar">
+    <div class="navbar">
         <div class="icon-container">
             <a id="project_link" class="hover">Projects</a>
             <b>/</b>
@@ -230,16 +223,16 @@
             <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
             <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
         </div>
-        <div class="mobile-container">
-            <a class="hover" href="index.html#projects">Projects</a>
+        <!-- <div class="mobile-container">
+            <a id="project_link" class="hover">Projects</a>
             <b>/</b>
-            <a class="hover" href="index.html#projects" style="text-decoration: none;">Goals</a>
+            <a id="goal_link" class="hover" style="text-decoration: none;">Goals</a>
             <b>/</b>
-            <a class="hover" href="index.html#projects" style="text-decoration: none;">About</a>
-            <br>
+            <a id="about_link" class="hover" style="text-decoration: none;">About</a>
+            <b>/</b>
             <a href="https://github.com/dbowling21"><i class="fa-brands fa-github icon"></i></a>
             <a href="https://www.linkedin.com/in/david-bowling-213g/"><i class="fa-brands fa-linkedin icon"></i></a>
-        </div>
+        </div> -->
     </div>
 
     <button onclick="topFunction()" id="returnTop" class="returnTop" title="Go to top">Top</button>
